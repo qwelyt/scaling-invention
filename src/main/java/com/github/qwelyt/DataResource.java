@@ -1,5 +1,6 @@
 package com.github.qwelyt;
 
+import com.github.qwelyt.util.Fibonacci;
 import com.github.qwelyt.util.factorial.Factorial;
 import com.github.qwelyt.util.primes.Factors;
 import com.github.qwelyt.util.primes.Primes;
@@ -47,6 +48,14 @@ public final class DataResource {
       System.out.println("Calculating prime factors for " + number);
       final List<Integer> factors = Factors.of(number);
       return respond(factors.stream().map(String::valueOf).collect(Collectors.joining(", ")));
+   }
+
+   @GET
+   @Path("fibonacci/{number}")
+   public Response fibonacci(@PathParam("number") final Integer number) {
+      System.out.println("Getting the " + number + " first numbers in the fibonacci sequence");
+      final List<BigInteger> fibs = Fibonacci.fibs(number);
+      return respond(fibs.stream().map(String::valueOf).collect(Collectors.joining(", ")));
    }
 
    private Response respond(final String str) {
