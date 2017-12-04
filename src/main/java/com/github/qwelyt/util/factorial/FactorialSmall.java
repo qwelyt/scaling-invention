@@ -11,7 +11,7 @@ public final class FactorialSmall {
    }
 
    private static TailCall<Integer> of(final int factorial, final int number){
-      if(number == 1){
+      if(number <= 1){
          return done(factorial);
       }
       return call(() -> of(factorial * number, number -1));

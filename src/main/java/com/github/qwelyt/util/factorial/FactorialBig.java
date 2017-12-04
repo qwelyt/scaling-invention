@@ -17,7 +17,7 @@ public final class FactorialBig {
    }
 
    private static TailCall<BigInteger> of(final BigInteger factorial, final BigInteger number){
-      if(number.equals(BigInteger.ONE)){
+      if(BigInteger.ZERO.compareTo(number) > 0 || BigInteger.ONE.equals(number)){
          return done(factorial);
       }
       return call(() -> of(multiply(factorial, number), decrement(number)));
