@@ -1,13 +1,14 @@
 package com.github.qwelyt;
 
+import com.github.qwelyt.util.Primes;
 import com.github.qwelyt.util.factorial.Factorial;
-import com.github.qwelyt.util.factorial.FactorialBig;
-import com.github.qwelyt.util.factorial.FactorialSmall;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.math.BigInteger;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
@@ -29,6 +30,14 @@ public final class DataResource {
       System.out.println("Calculating factorial for: "+number);
       final BigInteger result = Factorial.of(number);
       return respond(String.valueOf(result));
+   }
+
+   @GET
+   @Path("primes/{start}/{primes}")
+   public Response primes(@PathParam("start") final Integer start, @PathParam("primes") final Integer primes) {
+      System.out.println("Getting " + primes + " prime numbers starting at " + start);
+      final List<Integer> primes1 = Primes.primes(start, primes);
+      return respond(primes1.stream().map(String::valueOf).collect(Collectors.joining(", ")));
    }
 
    private Response respond(final String str) {
