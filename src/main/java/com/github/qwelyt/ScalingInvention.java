@@ -6,14 +6,14 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
 
-public class ScalingInvention {
+public final class ScalingInvention {
     public static void main( final String[] args ) throws Exception{
        new ScalingInvention().run();
     }
 
     private void run() throws Exception{
-
        setupServer(8080, resourceConfig());
+       System.out.println("================\nServer started\n================");
     }
 
    private ResourceConfig resourceConfig() {
