@@ -1,5 +1,6 @@
 package com.github.qwelyt.util;
 
+import com.github.qwelyt.util.primes.Primes;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

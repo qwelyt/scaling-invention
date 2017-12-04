@@ -1,4 +1,4 @@
-package com.github.qwelyt.util;
+package com.github.qwelyt.util.primes;
 
 import java.util.List;
 import java.util.stream.Collectors;

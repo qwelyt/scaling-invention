@@ -1,7 +1,8 @@
 package com.github.qwelyt;
 
-import com.github.qwelyt.util.Primes;
 import com.github.qwelyt.util.factorial.Factorial;
+import com.github.qwelyt.util.primes.Factors;
+import com.github.qwelyt.util.primes.Primes;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -38,6 +39,14 @@ public final class DataResource {
       System.out.println("Getting " + primes + " prime numbers starting at " + start);
       final List<Integer> primes1 = Primes.primes(start, primes);
       return respond(primes1.stream().map(String::valueOf).collect(Collectors.joining(", ")));
+   }
+
+   @GET
+   @Path("primes/factors/{number}")
+   public Response primeFactors(@PathParam("number") final Integer number) {
+      System.out.println("Calculating prime factors for " + number);
+      final List<Integer> factors = Factors.of(number);
+      return respond(factors.stream().map(String::valueOf).collect(Collectors.joining(", ")));
    }
 
    private Response respond(final String str) {
